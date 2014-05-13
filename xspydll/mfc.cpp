@@ -556,6 +556,9 @@ void SpyMfc(HWND hWnd, std::string& result)
 
     switch(g_mfcver)
     {
+    case 110:
+        CASE_MFC(110, d);
+        break;
     case 90:
         CASE_MFC(90, d);
         break;

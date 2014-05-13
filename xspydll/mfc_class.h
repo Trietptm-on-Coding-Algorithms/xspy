@@ -213,12 +213,12 @@ public:
 };
 
 template <class dbg>
-class CDialog42X : public CWnd42X<dbg>
+class CDialog42X : public dbg
 {
 public:
     void get_vfn_string(PVFN& pStart, DWORD& index, std::string& result)
     {
-        CWnd42X<dbg>::get_vfn_string(pStart, index, result);
+        dbg::get_vfn_string(pStart, index, result);
         PRINT_VFN(DoModal);
         PRINT_VFN(OnInitDialog);
         PRINT_VFN(OnSetFont);
@@ -298,12 +298,12 @@ public:
 };
 
 template<class dbg>
-class CDialog90X : public CWnd90X<dbg>
+class CDialog90X : public dbg
 {
 public:
     void get_vfn_string(PVFN& pStart, DWORD& index, std::string& result)
     {
-        CWnd90X<dbg>::get_vfn_string(pStart, index, result);
+        dbg::get_vfn_string(pStart, index, result);
         PRINT_VFN(Create);
         PRINT_VFN(Create);
         PRINT_VFN(CreateIndirect);
@@ -316,6 +316,86 @@ public:
         PRINT_VFN(PreInitDialog);
     }
 };
+
+// mfc 110 (test on vs2012)
+template <class dbg>
+class CWnd110X : public CCmdTarget<dbg>
+{
+public:
+	void get_vfn_string(PVFN& pStart, DWORD& index, std::string& result)
+	{
+		CCmdTarget<dbg>::get_vfn_string(pStart, index, result);
+		PRINT_VFN(PreSubclassWindow);
+		PRINT_VFN(Create);
+		PRINT_VFN(CreateEx);
+		PRINT_VFN(CreateEx);
+		PRINT_VFN(DestroyWindow);
+		PRINT_VFN(PreCreateWindow);
+		PRINT_VFN(CalcWindowRect);
+		PRINT_VFN(GetMenu);
+		PRINT_VFN(SetMenu);
+		PRINT_VFN(OnToolHitTest);
+		PRINT_VFN(GetScrollBarCtrl);
+		PRINT_VFN(WinHelpA);
+		PRINT_VFN(HtmlHelpA);
+		PRINT_VFN(WinHelpInternal);
+		PRINT_VFN(ContinueModal);
+		PRINT_VFN(EndModalLoop);
+		PRINT_VFN(OnDrawIconicThumbnailOrLivePreview); // new
+		PRINT_VFN(EnsureStdObj);
+		PRINT_VFN(get_accParent);
+		PRINT_VFN(get_accChildCount);
+		PRINT_VFN(get_accChild);
+		PRINT_VFN(get_accName);
+		PRINT_VFN(get_accValue);
+		PRINT_VFN(get_accDescription);
+		PRINT_VFN(get_accRole);
+		PRINT_VFN(get_accState);
+		PRINT_VFN(get_accHelp);
+		PRINT_VFN(get_accHelpTopic);
+		PRINT_VFN(get_accKeyboardShortcut);
+		PRINT_VFN(get_accFocus);
+		PRINT_VFN(get_accSelection);
+		PRINT_VFN(get_accDefaultAction);
+		PRINT_VFN(accSelect);
+		PRINT_VFN(accLocation);
+		PRINT_VFN(accNavigate);
+		PRINT_VFN(accHitTest);
+		PRINT_VFN(accDoDefaultAction);
+		PRINT_VFN(put_accName);
+		PRINT_VFN(put_accValue);
+		PRINT_VFN(SetProxy);
+		PRINT_VFN(CreateAccessibleProxy);
+		PRINT_VFN(OnCommand);
+		PRINT_VFN(OnNotify);
+		PRINT_VFN(GetSuperWndProcAddr);
+		PRINT_VFN(DoDataExchange);
+		PRINT_VFN(BeginModalState);
+		PRINT_VFN(EndModalState);
+		PRINT_VFN(PreTranslateMessage);
+		PRINT_VFN(OnAmbientProperty);
+		PRINT_VFN(WindowProc);
+		PRINT_VFN(OnWndMsg);
+		PRINT_VFN(DefWindowProcA);
+		PRINT_VFN(PostNcDestroy);
+		PRINT_VFN(OnChildNotify);
+		PRINT_VFN(OnTouchInputs);			// new begin
+		PRINT_VFN(OnTouchInput);
+		PRINT_VFN(GetGestureStatus);
+		PRINT_VFN(OnGestureZoom);
+		PRINT_VFN(OnGesturePan);
+		PRINT_VFN(OnGestureRotate);
+		PRINT_VFN(OnGestureTwoFingerTap);
+		PRINT_VFN(OnGesturePressAndTap);	// new end
+		PRINT_VFN(CheckAutoCenter);
+		PRINT_VFN(IsFrameWnd);
+		PRINT_VFN(CreateControlContainer);
+		PRINT_VFN(CreateControlSite);
+		PRINT_VFN(SetOccDialogInfo);
+		PRINT_VFN(GetOccDialogInfo);
+	}
+};
+// CDialog110X same as CDialog90X
 
 // vc60到vs2008，CCmdTarget的虚函数表都是一样，vs2008的CWnd类虚函数表就多很多函数了
 template <class dbg>
@@ -342,13 +422,20 @@ typedef CDialog CDialog00;
 typedef CDialogd CDialog00d;
 
 // mfc42
-typedef CDialog42X<CObject>     CDialog42;
-typedef CDialog42X<CObject_dbg> CDialog42d;
 typedef CWnd42X<CObject>        CWnd42;
 typedef CWnd42X<CObject_dbg>    CWnd42d;
+typedef CDialog42X<CWnd42>      CDialog42;
+typedef CDialog42X<CWnd42d>     CDialog42d;
+
 
 // mfc90
-typedef CDialog90X<CObject>     CDialog90;
-typedef CDialog90X<CObject_dbg> CDialog90d;
 typedef CWnd90X<CObject>        CWnd90;
 typedef CWnd90X<CObject_dbg>    CWnd90d;
+typedef CDialog90X<CWnd90>      CDialog90;
+typedef CDialog90X<CWnd90d>     CDialog90d;
+
+// mfc110
+typedef CWnd110X<CObject>       CWnd110;
+typedef CWnd110X<CObject_dbg>   CWnd110d;
+typedef CDialog90X<CWnd110>     CDialog110;
+typedef CDialog90X<CWnd110d>    CDialog110d;
