@@ -76,6 +76,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="2"
+				UACExecutionLevel="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -161,6 +162,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\$(ProjectName)-x64.exe"
 				LinkIncremental="2"
+				UACExecutionLevel="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="17"
@@ -242,6 +244,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="1"
+				UACExecutionLevel="2"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -323,6 +326,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\$(ProjectName)-x64.exe"
 				LinkIncremental="1"
+				UACExecutionLevel="2"
 				SubSystem="2"
 				TargetMachine="17"
 			/>
