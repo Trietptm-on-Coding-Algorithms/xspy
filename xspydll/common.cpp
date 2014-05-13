@@ -56,14 +56,16 @@ static PVOID GetFinalAddr( PVOID addr )
     do
     {
         changed = 0;
+
+        // 无论是call还是jmp dword(x64 qword)，在x64上操作数都是4个字节
         if(pbaddr[0] == 0xe9)
         {
-            pbaddr += 5 + *(PDWORD)(pbaddr+1);
+            pbaddr += 5 + *((int*)(pbaddr+1));
             changed = 1;
         }
         else if(pbaddr[0] == 0xff && pbaddr[1] == 0x25)
         {
-            pbaddr = **(PBYTE**)(pbaddr+2);
+            pbaddr += 6 + *((int*)(pbaddr+2));
             changed = 1;
         }
     } while(changed);
