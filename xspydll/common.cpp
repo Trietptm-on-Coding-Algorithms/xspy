@@ -65,7 +65,15 @@ static PVOID GetFinalAddr( PVOID addr )
         }
         else if(pbaddr[0] == 0xff && pbaddr[1] == 0x25)
         {
+
+#ifdef _M_X64 // x64ÊÇÊÇÆ«ÒÆ
             pbaddr += 6 + *((int*)(pbaddr+2));
+#endif
+
+#ifdef _M_IX86
+            pbaddr = **(PBYTE**)(pbaddr+2); 
+#endif
+
             changed = 1;
         }
     } while(changed);
