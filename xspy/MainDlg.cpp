@@ -343,3 +343,23 @@ LRESULT CMainDlg::OnSpyStart( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*
     ShowWindow(SW_HIDE);
     return 0;
 }
+
+LRESULT CMainDlg::OnSize(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam, BOOL& /*bHandled*/)
+{
+    //CRect rectParent;
+    //GetClientRect(rectParent);
+    //short xDelta = rectParent.Width() - LOWORD(lParam);
+    //short yDelta = rectParent.Height() - HIWORD(lParam);
+
+    //if (xDelta || yDelta)
+    //{
+    //    CWindow w = GetDlgItem(IDC_EDIT1);
+    //    
+    //    CRect rect;
+    //    w.GetClientRect(rect);
+    //    w.ResizeClient(rect.Width() + xDelta, rect.Height() + yDelta, TRUE);
+
+    //}
+
+    return 0;
+}

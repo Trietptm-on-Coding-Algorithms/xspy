@@ -48,7 +48,8 @@ public:
 
 	BEGIN_MSG_MAP(CMainDlg)
 		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
-		COMMAND_ID_HANDLER(IDOK, OnOK)
+        MESSAGE_HANDLER(WM_SIZE, OnSize)
+        COMMAND_ID_HANDLER(IDOK, OnOK)
 		COMMAND_ID_HANDLER(IDCANCEL, OnCancel)
 		//NOTIFY_HANDLER(IDC_TAB1, TCN_SELCHANGE, OnTcnSelchangeTab1)
         MESSAGE_HANDLER(WM_SPY, OnSpy)
@@ -63,7 +64,8 @@ public:
 //	LRESULT CommandHandler(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 //	LRESULT NotifyHandler(int /*idCtrl*/, LPNMHDR /*pnmh*/, BOOL& /*bHandled*/)
 
-	LRESULT OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
+    LRESULT OnSize(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
+    LRESULT OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
 	LRESULT OnOK(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnCancel(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 
