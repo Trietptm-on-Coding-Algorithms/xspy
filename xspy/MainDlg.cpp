@@ -198,6 +198,55 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
         GetDlgItem(IDC_EDIT_MSG).SetWindowText(strResult.c_str());
 
     }
+    else
+    {
+        typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
+        static LPFN_ISWOW64PROCESS fnIsWow64Process = (LPFN_ISWOW64PROCESS) GetProcAddress(
+            GetModuleHandle(TEXT("kernel32")),"IsWow64Process");
+
+        if(NULL != fnIsWow64Process)
+        {
+            DWORD Pid;
+            GetWindowThreadProcessId(hWnd, &Pid);
+            boost::shared_ptr<void> Process(OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_QUERY_LIMITED_INFORMATION, FALSE, Pid)
+                , CloseHandle);
+            if (Process != NULL)
+            {
+                BOOL bIsWow64;
+
+#ifdef _M_IX86
+                // 检查32版本是否运行在64位系统上
+                if (fnIsWow64Process(GetCurrentProcess(), &bIsWow64))
+                {
+                    if (bIsWow64)
+                    {
+                        if (fnIsWow64Process(Process.get(),&bIsWow64))
+                        {
+                            // 64位程序在64位系统上运行是FALSE
+                            if (!bIsWow64)
+                            {
+                                MessageBox(TEXT("目标进程是64位，请运行xspy的64位版本进行探测！"), TEXT("提示"), MB_OK | MB_ICONINFORMATION);
+                                return 0;
+                            }
+                        }
+                    }
+                }
+#endif
+
+#ifdef _M_X64
+                if (fnIsWow64Process(Process.get(),&bIsWow64))
+                {
+                    if (bIsWow64)
+                    {
+                        MessageBox(TEXT("目标进程是32位，请运行xspy的32位版本进行探测！"), TEXT("提示"), MB_OK | MB_ICONINFORMATION);
+                        return 0;
+                    }
+                }
+#endif
+
+            }
+        }
+    }
 
     return 0;
 }
