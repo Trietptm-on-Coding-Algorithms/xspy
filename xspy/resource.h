@@ -5,8 +5,6 @@
 #define IDD_ABOUTBOX                    100
 #define IDR_MAINFRAME                   128
 #define IDD_MAINDLG                     129
-#define IDD_MFC                         201
-#define IDD_ATL                         202
 #define IDI_ICON1                       203
 #define IDC_STATIC1                     1003
 #define IDC_EDIT1                       1004
