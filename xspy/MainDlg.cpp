@@ -85,7 +85,33 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 
     ui_capture_.AddRecvWnd(m_hWnd); // 由主界面统一处理
 
-    //EnablePrivilege();
+#ifdef _M_X64
+    ATL::CString Title;
+    GetWindowText(Title);
+    Title += TEXT(" (x64 version)");
+    SetWindowText(Title);
+#endif
+
+    LPCWSTR lpStrCmdLine=GetCommandLineW();
+    int NumArgs=0;
+    LPWSTR* szArglist=CommandLineToArgvW(lpStrCmdLine, &NumArgs);
+    if (szArglist)
+    {
+        if (NumArgs>1)
+        {
+            HWND hWnd;
+#ifdef _WIN64 // 使用StrToInt64Ex，需要#define _WIN32_IE	0x0600
+            StrToInt64ExW(szArglist[1], STIF_SUPPORT_HEX, (LONGLONG *)&hWnd);
+#else
+            StrToIntExW(szArglist[1], STIF_SUPPORT_HEX, (int*)&hWnd);
+#endif
+            if (::IsWindow(hWnd))
+            {
+                PostMessage(WM_SPY,(WPARAM)hWnd,NULL);
+            }
+        }
+        LocalFree(szArglist);
+    }
 	return TRUE;
 }
 
@@ -225,7 +251,17 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
                             // 64位程序在64位系统上运行是FALSE
                             if (!bIsWow64)
                             {
-                                MessageBox(TEXT("目标进程是64位，请运行xspy的64位版本进行探测！"), TEXT("提示"), MB_OK | MB_ICONINFORMATION);
+                                if(IDYES==MessageBox(TEXT("目标进程是64位，需要切换到xspy的64位版本进行探测吗?")
+                                    , TEXT("提示")
+                                    , MB_YESNO | MB_ICONINFORMATION))
+                                {
+                                    ShowWindow(SW_HIDE);
+                                    TCHAR StrhWnd[64];
+                                    _itot_s((int)hWnd, StrhWnd, 10);
+                                    ShellExecute(NULL, _T("open"), _T("xspy-x64.exe"), StrhWnd, NULL, SW_SHOW);
+
+                                    PostQuitMessage(0);
+                                }
                                 return 0;
                             }
                         }
@@ -238,7 +274,16 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
                 {
                     if (bIsWow64)
                     {
-                        MessageBox(TEXT("目标进程是32位，请运行xspy的32位版本进行探测！"), TEXT("提示"), MB_OK | MB_ICONINFORMATION);
+                        if(IDYES==MessageBox(TEXT("目标进程是32位，需要切换到xspy的32位版本进行探测吗?")
+                            , TEXT("提示")
+                            , MB_YESNO | MB_ICONINFORMATION))
+                        {
+                            ShowWindow(SW_HIDE);
+                            TCHAR StrhWnd[64];
+                            _i64tot((__int64)hWnd, StrhWnd, 10);
+                            ShellExecute(NULL, _T("open"), _T("xspy.exe"), StrhWnd, NULL, SW_SHOW);
+                            PostQuitMessage(0);
+                        }
                         return 0;
                     }
                 }
