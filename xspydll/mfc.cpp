@@ -559,6 +559,9 @@ void SpyMfc(HWND hWnd, std::string& result)
     case 110:
         CASE_MFC(110, d);
         break;
+    case 100:
+        CASE_MFC(100, d);
+        break;
     case 90:
         CASE_MFC(90, d);
         break;

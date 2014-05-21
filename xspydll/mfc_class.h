@@ -439,3 +439,9 @@ typedef CWnd110X<CObject>       CWnd110;
 typedef CWnd110X<CObject_dbg>   CWnd110d;
 typedef CDialog90X<CWnd110>     CDialog110;
 typedef CDialog90X<CWnd110d>    CDialog110d;
+
+// mfc100
+typedef CWnd110 CWnd100;
+typedef CWnd110d CWnd100d;
+typedef CDialog110 CDialog100;
+typedef CDialog110d CDialog100d;
