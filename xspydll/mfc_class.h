@@ -445,3 +445,9 @@ typedef CWnd110 CWnd100;
 typedef CWnd110d CWnd100d;
 typedef CDialog110 CDialog100;
 typedef CDialog110d CDialog100d;
+
+// mfc120
+typedef CWnd110 CWnd120;
+typedef CWnd110d CWnd120d;
+typedef CDialog110 CDialog120;
+typedef CDialog110d CDialog120d;

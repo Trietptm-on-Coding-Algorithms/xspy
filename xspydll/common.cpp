@@ -38,7 +38,7 @@ std::string GetMods(LPCVOID addr)
         p = strrchr(fn,'\\');
         if(p) ++p ; else p = fn;
         // 当长度大于6时，%06p是不会截断显示的
-        s = boost::str(boost::format("0x%p(%s+ 0x%06p )") % addr % p % ((PBYTE)addr - (PBYTE)pb));
+        s = boost::str(boost::format("0x%p (%s+ 0x%06p )") % addr % p % ((PBYTE)addr - (PBYTE)pb));
         //s.Format("%p(%s+%06X)",addr,p,(PBYTE)addr - (PBYTE)pb );
     }
     else

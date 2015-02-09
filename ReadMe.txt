@@ -1,4 +1,4 @@
-features：
+features:
 借鉴mfcspy，目标是支持所有mfc版本
 支持ATL/WTL的简单分析
 分析速度比mfcspy更快
@@ -7,6 +7,8 @@ download下载地址：
 http://pan.baidu.com/s/1c0rJAm8
 
 changelog:
+2015年2月9日:
+增加mfc120的支持，修复capture时不隐藏主窗口的问题，English GUI，auto resizing.
 2014年5月19日
 添加x86和x64切换提示，感谢sonyps
 2014年5月13日

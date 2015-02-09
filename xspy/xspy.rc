@@ -32,65 +32,6 @@ IDI_ICON1               ICON                    "res\\icon.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Dialog
-//
-
-IDD_ABOUTBOX DIALOGEX 0, 0, 187, 102
-STYLE DS_SETFONT | WS_CHILD | WS_SYSMENU
-FONT 9, "宋体", 400, 0, 0x86
-BEGIN
-    CTEXT           "xspy by lynnux\n\n(c) Copyright 2013-2014",IDC_STATIC,56,10,124,32
-    ICON            IDR_MAINFRAME,IDC_STATIC,18,16,20,20
-END
-
-IDD_MAINDLG DIALOGEX 0, 0, 385, 262
-STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_CAPTION | WS_SYSMENU
-CAPTION "xspy v0.4.2"
-FONT 9, "宋体", 400, 0, 0x0
-BEGIN
-    EDITTEXT        IDC_EDIT1,35,7,190,14,ES_AUTOHSCROLL | ES_WANTRETURN
-    LTEXT           "cap",IDC_STATIC1,238,7,22,19,0,WS_EX_STATICEDGE
-    PUSHBUTTON      "Spy it",IDOK,266,7,50,16
-    EDITTEXT        IDC_EDIT_MSG,7,37,371,165,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    PUSHBUTTON      "选项...",IDC_BUTTON1,328,7,50,16
-    CONTROL         "窗口资源在dll中",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,234,79,10
-    EDITTEXT        IDC_EDIT2,167,232,92,14,ES_AUTOHSCROLL
-    GROUPBOX        "MFC",IDC_STATIC,7,216,371,39
-    CONTROL         "",IDC_STATIC_MORE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,208,208,115,1
-    LTEXT           "HWND:",IDC_STATIC,10,9,21,8
-    LTEXT           "dll全名:",IDC_STATIC,126,235,36,8
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 180
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 95
-    END
-
-    IDD_MAINDLG, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 378
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 255
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Accelerator
 //
 
@@ -134,6 +75,66 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\xspy.ico"
 
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 187, 102
+STYLE DS_SETFONT | WS_CAPTION | WS_SYSMENU
+FONT 9, "Courier New", 400, 0, 0x0
+BEGIN
+    CTEXT           "xspy by lynnux\n\n(c) Copyright 2013-2015\n\nContact:lynnux@qq.com",IDC_STATIC,56,10,124,61
+    ICON            IDR_MAINFRAME,IDC_STATIC,18,16,18,17
+    PUSHBUTTON      "OK",IDOK,68,81,50,14
+END
+
+IDD_MAINDLG DIALOGEX 0, 0, 402, 269
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "xspy v0.4.3"
+FONT 9, "Courier New", 400, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_EDIT1,35,7,270,14,ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "cap",IDC_STATIC1,314,7,22,19,0,WS_EX_STATICEDGE
+    PUSHBUTTON      "Spy it",IDOK,345,7,50,16
+    EDITTEXT        IDC_EDIT_MSG,7,37,388,165,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    CONTROL         " (MFC only)resource in dll:",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,244,145,10
+    EDITTEXT        IDC_EDIT2,166,242,92,14,ES_AUTOHSCROLL
+    GROUPBOX        "Options",IDC_STATIC_OPTIONS,7,207,326,55,0,WS_EX_TRANSPARENT
+    LTEXT           "HWND:",IDC_STATIC,10,9,21,8
+    CONTROL         " Hide xspy when capturing",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,225,240,10
+    PUSHBUTTON      "About",ID_APP_ABOUT,341,240,50,16
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
+    END
+
+    IDD_MAINDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 395
+        VERTGUIDE, 17
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 262
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -165,8 +166,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,4,2,0
- PRODUCTVERSION 0,4,2,0
+ FILEVERSION 0,4,3,0
+ PRODUCTVERSION 0,4,3,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -181,13 +182,13 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "FileDescription", "by lynnux"
-            VALUE "FileVersion", "0, 4, 2, 0"
+            VALUE "FileDescription", "by lynnux(lynnux@qq.com)"
+            VALUE "FileVersion", "0, 4, 3, 0"
             VALUE "InternalName", "xspy"
-            VALUE "LegalCopyright", "Copyright 2013-2014"
+            VALUE "LegalCopyright", "Copyright 2013-2015"
             VALUE "OriginalFilename", "xspy.exe"
             VALUE "ProductName", "xspy Module"
-            VALUE "ProductVersion", "0, 4, 2, 0"
+            VALUE "ProductVersion", "0, 4, 3, 0"
         END
     END
     BLOCK "VarFileInfo"

@@ -54,6 +54,7 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 {
 	// center the dialog on the screen
 	CenterWindow();
+    DlgResize_Init();
 
 	// set icons
 	HICON hIcon = (HICON)::LoadImage(_Module.GetResourceInstance(), MAKEINTRESOURCE(IDR_MAINFRAME), 
@@ -71,19 +72,19 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	// init
 	ui_capture_.SubclassWindow(GetDlgItem(IDC_STATIC1));
 
-    GetDlgItem(IDC_EDIT2).EnableWindow(FALSE);
-    CButton b(GetDlgItem(IDC_CHECK1));
-    b.SetCheck(BST_UNCHECKED);
-
-    CRect rc;
-    CRect rcShow;
-    GetWindowRect(rc);
-    GetDlgItem(IDC_STATIC_MORE).GetWindowRect(rcShow);
-    m_oldBottom = rc.bottom - rcShow.bottom;
-    rc.bottom = rcShow.bottom;
-    MoveWindow(rc);
+    {
+        GetDlgItem(IDC_EDIT2).EnableWindow(FALSE);
+        CButton b(GetDlgItem(IDC_CHECK1));
+        b.SetCheck(BST_UNCHECKED);
+    }
 
     ui_capture_.AddRecvWnd(m_hWnd); // 由主界面统一处理
+
+    {
+        CButton b(GetDlgItem(IDC_CHECK2));
+        b.SetCheck(BST_CHECKED);
+        hideXspyWhenCapture_ = true;
+    }
 
 #ifdef _M_X64
     ATL::CString Title;
@@ -214,7 +215,7 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
     if (result)
     {
         std::tstring strResult;
-        strResult = _T("温馨提示:鼠标双击选中地址后，鼠标右键立刻复制\r\n");
+        strResult = _T("Tip: Double click to select address，right mouse immediately copy it\r\n");
 
 #ifdef _UNICODE
         strResult += s2ws(result->retMsg);
@@ -251,8 +252,8 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
                             // 64位程序在64位系统上运行是FALSE
                             if (!bIsWow64)
                             {
-                                if(IDYES==MessageBox(TEXT("目标进程是64位，需要切换到xspy的64位版本进行探测吗?")
-                                    , TEXT("提示")
+                                if(IDYES==MessageBox(TEXT("Target process is 64-bit, do you want to switch to 64-bit version of xspy to detect it?")
+                                    , TEXT("Note")
                                     , MB_YESNO | MB_ICONINFORMATION))
                                 {
                                     ShowWindow(SW_HIDE);
@@ -274,8 +275,8 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
                 {
                     if (bIsWow64)
                     {
-                        if(IDYES==MessageBox(TEXT("目标进程是32位，需要切换到xspy的32位版本进行探测吗?")
-                            , TEXT("提示")
+                        if(IDYES==MessageBox(TEXT("Target process is 32 bit, do you want to switch to 32-bit version of xspy to detect it?")
+                            , TEXT("Note")
                             , MB_YESNO | MB_ICONINFORMATION))
                         {
                             ShowWindow(SW_HIDE);
@@ -370,41 +371,15 @@ LRESULT CMainDlg::OnBnClickedCheck1(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*h
     return 0;
 }
 
-
-LRESULT CMainDlg::OnBnClickedButton1(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
-{
-    
-    CRect rc;
-    GetWindowRect(rc);
-    rc.bottom += m_oldBottom;
-    MoveWindow(rc);
-    GetDlgItem(IDC_BUTTON1).ShowWindow(SW_HIDE);
-
-    return 0;
-}
-
 LRESULT CMainDlg::OnSpyStart( UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/ )
 {
-    ShowWindow(SW_HIDE);
+    {
+        CButton b(GetDlgItem(IDC_CHECK2));
+        hideXspyWhenCapture_ = (BST_CHECKED == b.GetCheck());
+    }
+
+    if(hideXspyWhenCapture_)
+        ShowWindow(SW_HIDE);
     return 0;
 }
 
-LRESULT CMainDlg::OnSize(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam, BOOL& /*bHandled*/)
-{
-    //CRect rectParent;
-    //GetClientRect(rectParent);
-    //short xDelta = rectParent.Width() - LOWORD(lParam);
-    //short yDelta = rectParent.Height() - HIWORD(lParam);
-
-    //if (xDelta || yDelta)
-    //{
-    //    CWindow w = GetDlgItem(IDC_EDIT1);
-    //    
-    //    CRect rect;
-    //    w.GetClientRect(rect);
-    //    w.ResizeClient(rect.Width() + xDelta, rect.Height() + yDelta, TRUE);
-
-    //}
-
-    return 0;
-}

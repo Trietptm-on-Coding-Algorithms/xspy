@@ -42,8 +42,8 @@ static BOOL TryReadThunkData(LPVOID dlgProc, std::string & sresult, bool bDlg = 
     BOOL bHasResult = FALSE; 
     if (dlgProc)
     {
-        sresult += bDlg ? "got DWLP_DLGPROC" : "got GWLP_WNDPROC";
-        sresult += boost::str(boost::format(" = 0x%p\r\n")% dlgProc);
+        sresult += bDlg ? "Address of DWLP_DLGPROC" : "Address of GWLP_WNDPROC";
+        sresult += boost::str(boost::format(": 0x%p\r\n")% dlgProc);
 
         ATL::_stdcallthunk thunk;
         if (TryCopyMemory(&thunk, (LPCVOID)dlgProc, sizeof(ATL::_stdcallthunk)))
@@ -78,8 +78,8 @@ static BOOL TryReadThunkData(LPVOID dlgProc, std::string & sresult, bool bDlg = 
 
                 sresult += bDlg ? "Dialog" : "Windows";
                 sresult += boost::str(boost::format
-                    (" thunk address = 0x%p\r\n"
-                    "class intstance = 0x%p\r\n")
+                    (" thunk data: 0x%p\r\n"
+                    "Object: 0x%p\r\n")
                     % dlgProc 
                     % td.thunk_this);
                 sresult += bDlg ? "DialogProc" : "WindowProc";
@@ -105,7 +105,7 @@ static BOOL TryReadThunkData(LPVOID dlgProc, std::string & sresult, bool bDlg = 
 
 void SpyATL( HWND hWnd, std::string& sresult)
 {
-    sresult += "----------获取ATL/WTL相关信息-------------\r\n";
+    sresult += "\r\n----------Information about ATL/WTL-------------\r\n";
     LONG_PTR winProc = ::GetWindowLongPtr(hWnd, DWLP_DLGPROC);
     if(TryReadThunkData((LPVOID)winProc, sresult))
     {

@@ -371,12 +371,12 @@ bool check_static(LPVOID start_addr, size_t start_len)
 
 void SpyMfc(HWND hWnd, std::string& result)
 {
-    result += "----------获取MFC相关信息-------------\r\n";
+    result += "\r\n----------Information about MFC-------------\r\n";
 
     BOOL bIsMfc = ::SendMessage(hWnd,WM_QUERYAFXWNDPROC,0,0);
     if (!bIsMfc)
     {
-        result += "不是MFC窗口\r\n";
+        result += "It not a MFC window\r\n";
         return ;
     }
 
@@ -434,7 +434,7 @@ void SpyMfc(HWND hWnd, std::string& result)
     }
 
     // 打印mfc基本信息
-    result += boost::str(boost::format("mfc version:%d, static linked?: %s, debug?: %s\r\n") % g_mfcver
+    result += boost::str(boost::format("MFC version: %d, static linked: %s, debug: %s\r\n") % g_mfcver
         % (g_IsStatic ? "true" : "false") 
         % (g_Isdbg ? "true" : "false") );
 
@@ -453,10 +453,10 @@ void SpyMfc(HWND hWnd, std::string& result)
     }
     if (0 == p)
     {
-        result += "failed to find CWnd::FromHandlePermanent!\r\n";
+        result += "Failed to get address of CWnd::FromHandlePermanent!\r\n";
         return;
     }
-    result += boost::str(boost::format("CWnd::FromHandlePermanent = 0x%p\r\n") % p);
+    result += boost::str(boost::format("Adress of CWnd::FromHandlePermanent: 0x%p\r\n") % p);
 
     typedef PVOID  (__stdcall *FROMHANDLEPERMANENT)(HWND hWnd);
     FROMHANDLEPERMANENT FromHandlePermanent = (FROMHANDLEPERMANENT)p;
@@ -464,11 +464,11 @@ void SpyMfc(HWND hWnd, std::string& result)
 
     if(0 == p)
     {
-        result += "failed to get CWnd instance\r\n";
+        result += "Failed to get object of CWnd\r\n";
         return;
     }
 
-    result += boost::str(boost::format("CWnd = 0x%p\r\n") % p);
+    result += boost::str(boost::format("CWnd object: 0x%p\r\n") % p);
 
     const AFX_MSGMAP* msgmap = NULL;
     CRuntimeClass* pr = NULL;
@@ -487,8 +487,10 @@ void SpyMfc(HWND hWnd, std::string& result)
         msgmap = pCWnd->GetMessageMap();
     }
 
-    result += boost::str(boost::format("HWND: 0x%p\r\nclass:%p(%s,size=%#x)\r\n") % hWnd % p % pr->m_lpszClassName % pr->m_nObjectSize);
+    result += boost::str(boost::format("HWND: 0x%p\r\nObject: %p (class: %s, size: %#x)\r\n") % hWnd % p % pr->m_lpszClassName % pr->m_nObjectSize);
+
     BOOL bIsDialog = FALSE;
+    result += "Inheritance: ";
     while(pr)
     {
         if(bIsDialog == FALSE && strcmp(pr->m_lpszClassName,"CDialog") == 0)
@@ -556,6 +558,9 @@ void SpyMfc(HWND hWnd, std::string& result)
 
     switch(g_mfcver)
     {
+    case 120:
+        CASE_MFC(120, d);
+        break;
     case 110:
         CASE_MFC(110, d);
         break;
@@ -577,13 +582,13 @@ void SpyMfc(HWND hWnd, std::string& result)
 
     if (!msgmap)
     {
-        result += "failed to get message map!\r\n";
+        result += "Failed to get message map!\r\n";
         return;
     }
     else
     {
         // 打印message map
-        result += boost::str(boost::format("\r\nmessage map=%s\r\nmsg map entries at %s\r\n")
+        result += boost::str(boost::format("\r\nMessage map: %s\r\nMessage map entries: %s\r\n")
             % GetMods(msgmap) % GetMods(msgmap->lpEntries));
         if(msgmap->lpEntries)
         {
