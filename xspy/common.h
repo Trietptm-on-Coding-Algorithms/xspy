@@ -23,7 +23,7 @@
 #pragma once
 
 #define  WM_SPY  (WM_USER + 1)
-#define  WM_SPY_START  (WM_USER + 1)
+#define  WM_SPY_START  (WM_USER + 2)
 
 #ifdef _UNICODE
 #define tstring wstring
