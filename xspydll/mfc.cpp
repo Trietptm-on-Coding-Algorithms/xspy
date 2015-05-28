@@ -32,6 +32,7 @@ extern char g_dllname[MAX_PATH];
 static bool g_Isdbg  = false;
 static bool g_IsStatic = false; // mfc不能同时链接动态，又链接静态
 unsigned long g_mfcver = 0;
+static bool g_IsUnicode = false;
 
 // 只有静态链接release版本才没有AssertValid和Dump两个虚函数
 bool IsStaticRelease()
@@ -77,7 +78,7 @@ int kmp_find(const unsigned char *text, int text_len, const unsigned char *patn,
 }
 
 #ifndef _WIN64
-// dword ptr [ebp+0Ch],360h
+// cmp dword ptr [ebp+0Ch],360h
 const unsigned char magic_code[] = {
     0x81, 0x7D, 0x0C, 0x60, 0x03, 0x00, 0x00
 };

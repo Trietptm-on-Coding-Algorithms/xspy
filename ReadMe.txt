@@ -6,6 +6,9 @@ features:
 download下载地址：
 http://pan.baidu.com/s/1c0rJAm8
 
+Known bugs:
+- target will crash when it depends mfc42u.dll
+
 changelog:
 2015年2月9日:
 增加mfc120的支持，修复capture时不隐藏主窗口的问题，English GUI，auto resizing.
