@@ -1,15 +1,14 @@
-features:
+Features:
 借鉴mfcspy，目标是支持所有mfc版本
 支持ATL/WTL的简单分析
 分析速度比mfcspy更快
 
-download下载地址：
+Download下载地址：
 http://pan.baidu.com/s/1c0rJAm8
 
-Known bugs:
-- target will crash when it depends mfc42u.dll
-
-changelog:
+Changelog:
+2017年3月11日:
+感谢sonyps5201314，解决了mfc42u崩溃的问题
 2015年2月9日:
 增加mfc120的支持，修复capture时不隐藏主窗口的问题，English GUI，auto resizing.
 2014年5月19日

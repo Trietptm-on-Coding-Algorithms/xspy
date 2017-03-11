@@ -77,13 +77,15 @@ int kmp_find(const unsigned char *text, int text_len, const unsigned char *patn,
     return -1;//没有找到
 }
 
+// 找AfxWndProc里的特征码来确定CWnd::FromHandlePermanent地址
+// 推荐使用x64dbg加载mfc dll的符号信息来观察
 #ifndef _WIN64
 // cmp dword ptr [ebp+0Ch],360h
 const unsigned char magic_code[] = {
     0x81, 0x7D, 0x0C, 0x60, 0x03, 0x00, 0x00
 };
 
-// mfc42.dll特例，或许不止EDI ? EAX, ECX, EBX...
+// mfc42.dll特例，或许不止EDI ? EAX, ECX, EBX... 又见出现cmp dword ptr [ebp+0Ch],360h两次的mfc42.dll和mfc42u.dll
 // MOV EDI,DWORD PTR SS:[EBP+0xC]
 // CMP EDI,0x360
 const unsigned char magic_code2[] = {
@@ -122,6 +124,23 @@ LPVOID find_FromHandlePermanent(LPVOID start_addr, size_t start_len)
         ret = kmp_find((const unsigned char*)start_addr, (int)start_len, magic_code, mg_len, next.get());
     }
     
+    if (42 == g_mfcver)
+    {
+        if (ret!=-1)
+        {
+            unsigned char* pCode = ((unsigned char*)start_addr + ret + mg_len);
+            int CodeLen=start_len-(ret + mg_len);
+            boost::shared_array<int> next_second(new int[mg_len]);
+            kmp_init(magic_code, mg_len, next_second.get());
+            int ret_second=kmp_find(pCode, CodeLen, magic_code, mg_len, next_second.get());
+            if (ret_second!=-1)
+            {
+                //如果存在第二个则说明第一个是AfxWndProcBase中的AfxGetModuleThreadState调用，不能用它，用它就崩溃了
+                ret=(ret + mg_len)+ret_second;
+            }
+        }
+    }
+
     // 再尝试
     if (ret == -1)
     {
