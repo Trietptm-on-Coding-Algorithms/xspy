@@ -1,41 +1,41 @@
-## ÌØµã Features:
- - ½è¼ømfcspy£¬Ä¿±êÊÇÖ§³ÖËùÓÐmfc°æ±¾
- - Ö§³ÖATL/WTLµÄ¼òµ¥·ÖÎö
- - ·ÖÎöËÙ¶È±Èmfcspy¸ü¿ì
+## ç‰¹ç‚¹ Features:
+ - å€Ÿé‰´mfcspyï¼Œç›®æ ‡æ˜¯æ”¯æŒæ‰€æœ‰mfcç‰ˆæœ¬
+ - æ”¯æŒATL/WTLçš„ç®€å•åˆ†æž
+ - åˆ†æžé€Ÿåº¦æ¯”mfcspyæ›´å¿«
 
-## ÏÂÔØµØÖ· Download£º
+## ä¸‹è½½åœ°å€ Downloadï¼š
 [http://pan.baidu.com/s/1c0rJAm8](http://pan.baidu.com/s/1c0rJAm8)
 
-## ¸üÐÂÈÕÖ¾ Changelog:
-- 2017Äê3ÔÂ11ÈÕ:
-¸ÐÐ»sonyps5201314£¬½â¾öÁËmfc42u±ÀÀ£µÄÎÊÌâ
-- 2015Äê2ÔÂ9ÈÕ:
-Ôö¼Ómfc120µÄÖ§³Ö£¬ÐÞ¸´captureÊ±²»Òþ²ØÖ÷´°¿ÚµÄÎÊÌâ£¬English GUI£¬auto resizing.
-- 2014Äê5ÔÂ19ÈÕ
-Ìí¼Óx86ºÍx64ÇÐ»»ÌáÊ¾£¬¸ÐÐ»sonyps
-- 2014Äê5ÔÂ13ÈÕ
-Ôö¼Ómfc110µÄÖ§³Ö£¬ÐÞ¸´x64 bug£¬Ôö¼ÓÒ»Ð©ÓÑºÃÌåÑé
-- 2013Äê4ÔÂ23ÈÕ
-0.3°æ±¾£¬³õ²½Ö§³Öx64Î»£¬ÔÝÊ±Ö»²âÊÔÁËmfc90±àÒëµÄx64³ÌÐò
-- 2013Äê4ÔÂ23ÈÕ
-0.2°æ±¾£¬¾«È·¼ì²â¾²Ì¬Á´½ÓµÄMFC³ÌÐòµÄÐÅÏ¢£¬Í³Ò»¶Ô¸÷°æ±¾MFCµÄÐéº¯Êý±íµÄÏÔÊ¾£¬ÔÝÊ±Ö»ÓÐmfc42ºÍmfc90µÄÐÅÏ¢£¨ÒòÎªÎÒ»ú×ÓÖ»ÓÐvs2008£©¡£
-- 2013Äê4ÔÂ19ÈÕ
-0.1°æ±¾·¢²¼£¬ÔÝÊ±ÎÞ³ÉÔ±±äÁ¿ÐÅÏ¢ÏÔÊ¾
+## æ›´æ–°æ—¥å¿— Changelog:
+- 2017å¹´3æœˆ11æ—¥:
+æ„Ÿè°¢sonyps5201314ï¼Œè§£å†³äº†mfc42uå´©æºƒçš„é—®é¢˜
+- 2015å¹´2æœˆ9æ—¥:
+å¢žåŠ mfc120çš„æ”¯æŒï¼Œä¿®å¤captureæ—¶ä¸éšè—ä¸»çª—å£çš„é—®é¢˜ï¼ŒEnglish GUIï¼Œauto resizing.
+- 2014å¹´5æœˆ19æ—¥
+æ·»åŠ x86å’Œx64åˆ‡æ¢æç¤ºï¼Œæ„Ÿè°¢sonyps
+- 2014å¹´5æœˆ13æ—¥
+å¢žåŠ mfc110çš„æ”¯æŒï¼Œä¿®å¤x64 bugï¼Œå¢žåŠ ä¸€äº›å‹å¥½ä½“éªŒ
+- 2013å¹´4æœˆ23æ—¥
+0.3ç‰ˆæœ¬ï¼Œåˆæ­¥æ”¯æŒx64ä½ï¼Œæš‚æ—¶åªæµ‹è¯•äº†mfc90ç¼–è¯‘çš„x64ç¨‹åº
+- 2013å¹´4æœˆ23æ—¥
+0.2ç‰ˆæœ¬ï¼Œç²¾ç¡®æ£€æµ‹é™æ€é“¾æŽ¥çš„MFCç¨‹åºçš„ä¿¡æ¯ï¼Œç»Ÿä¸€å¯¹å„ç‰ˆæœ¬MFCçš„è™šå‡½æ•°è¡¨çš„æ˜¾ç¤ºï¼Œæš‚æ—¶åªæœ‰mfc42å’Œmfc90çš„ä¿¡æ¯ï¼ˆå› ä¸ºæˆ‘æœºå­åªæœ‰vs2008ï¼‰ã€‚
+- 2013å¹´4æœˆ19æ—¥
+0.1ç‰ˆæœ¬å‘å¸ƒï¼Œæš‚æ—¶æ— æˆå‘˜å˜é‡ä¿¡æ¯æ˜¾ç¤º
 
 ## TODO:
-- Ö§³ÖËùÓÐMFC°æ±¾µÄ¸ü¶àÐÅÏ¢ÏÔÊ¾
-- Ö§³ÖQT
+- æ”¯æŒæ‰€æœ‰MFCç‰ˆæœ¬çš„æ›´å¤šä¿¡æ¯æ˜¾ç¤º
+- æ”¯æŒQT
 
-### Ö§¸¶±¦ÔÞÖú
-![Ö§¸¶±¦ÔÞÖú](https://github.com/lynnux/lynnux.github.io/blob/master/alipay.png)
+### æ”¯ä»˜å®èµžåŠ©
+![æ”¯ä»˜å®èµžåŠ©](https://github.com/lynnux/lynnux.github.io/blob/master/alipay.png)
 
-### Î¢ÐÅÔÞÖú
-![Î¢ÐÅÔÞÖú](https://github.com/lynnux/lynnux.github.io/blob/master/weixin.png)
+### å¾®ä¿¡èµžåŠ©
+![å¾®ä¿¡èµžåŠ©](https://github.com/lynnux/lynnux.github.io/blob/master/weixin.png)
 
 
-±¾³ÌÐò½ö×÷Ñ§Ï°½»Á÷ÑÐ¾¿Ö®ÓÃ£¬»¹ÓÐºÜ¶àbugºÍ²»ÍêÉÆµÄµØ·½£¬Èç¹ûÄã·¢ÏÖÎÞ·¨·ÖÎöµÄ³ÌÐò£¬ÓÐ¿ÉÄÜµÄ»°Çë½«Ñù±¾³ÌÐò·¢ËÍÖÁ lynnux@qq.com£¬ÓÐ½¨Òé»òÒâ¼ûÒ²Çë·¢ËÍÖÁÕâ¸öÓÊÏä£¬·Ç³£¸ÐÐ»£¡
+æœ¬ç¨‹åºä»…ä½œå­¦ä¹ äº¤æµç ”ç©¶ä¹‹ç”¨ï¼Œè¿˜æœ‰å¾ˆå¤šbugå’Œä¸å®Œå–„çš„åœ°æ–¹ï¼Œå¦‚æžœä½ å‘çŽ°æ— æ³•åˆ†æžçš„ç¨‹åºï¼Œæœ‰å¯èƒ½çš„è¯è¯·å°†æ ·æœ¬ç¨‹åºå‘é€è‡³ lynnux@qq.comï¼Œæœ‰å»ºè®®æˆ–æ„è§ä¹Ÿè¯·å‘é€è‡³è¿™ä¸ªé‚®ç®±ï¼Œéžå¸¸æ„Ÿè°¢ï¼
 
-### ¸ÐÐ» Greets:
+### æ„Ÿè°¢ Greets:
 goldenegg http://bbs.pediy.com/showthread.php?s=&threadid=9805
 LoveMeiL http://bbs.pediy.com/showthread.php?p=1143082
-sonyps x86ºÍx64ÇÐ»»ÌáÊ¾
+sonyps x86å’Œx64åˆ‡æ¢æç¤º
