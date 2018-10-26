@@ -6,6 +6,10 @@
 ## 下载地址 Download：
 [http://pan.baidu.com/s/1c0rJAm8](http://pan.baidu.com/s/1c0rJAm8)
 
+## 使用说明
+![gif](https://github.com/lynnux/xspy/blob/master/usage.gif)
+
+
 ## 更新日志 Changelog:
 - 2017年3月11日:
 感谢sonyps5201314，解决了mfc42u崩溃的问题
