@@ -102,12 +102,6 @@ const unsigned char magic_code2[] = {
 };
 #endif
 
-//// 加在这没用，要在sources里添加
-#ifndef _WIN64
-#pragma comment(lib, "LDE64.lib")
-#else
-#pragma comment(lib, "LDE64x64.lib")
-#endif
 // size_t在64位上就变成64位了!
 
 extern "C" size_t __stdcall LDE(PVOID  Address, ULONG  x64);
@@ -235,8 +229,6 @@ static std::vector<SECTION_T> GetDataSection(HMODULE hMod)
 }
 
 #include <Psapi.h>
-#pragma comment(lib, "Psapi.lib")
-
 
 static CRuntimeClass * GetParentRTC(CRuntimeClass * pr)
 {

@@ -35,20 +35,6 @@
 #include <boost/shared_ptr.hpp>
 #include <atlstr.h>
 #include "../xspydll/xspydll.h"
-#ifdef _DEBUG
-#ifdef _WIN64
-#pragma comment(lib, "..\\Debug\\xspydll-x64.lib")
-#else
-#pragma comment(lib, "..\\Debug\\xspydll.lib")
-#endif
-#else
-#ifdef _WIN64
-#pragma comment(lib, "..\\Release\\xspydll-x64.lib")
-#else
-#pragma comment(lib, "..\\Release\\xspydll.lib")
-#endif
-#endif
- 
 
 LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {

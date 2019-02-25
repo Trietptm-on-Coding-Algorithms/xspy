@@ -21,7 +21,7 @@
  */
 
 #pragma once
-#include <string>
+#include <string >
 
 //see afxtrace.cpp 这里是一种根据宏如WIN64_XXXX有没有定义，而切换宏的方法，相当于宏里定义宏
 // from http://stackoverflow.com/questions/2664703/macros-in-macros-c

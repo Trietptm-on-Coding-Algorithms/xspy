@@ -2,7 +2,7 @@
  *
  * This file is part of xspy
  * By lynnux <lynnux@qq.com>
- * Copyright 2013-2015 lynnux
+ * Copyright 2013 lynnux
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
