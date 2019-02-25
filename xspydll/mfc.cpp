@@ -187,8 +187,8 @@ static std::vector<SECTION_T> GetCodeSection(HMODULE hMod)
     WORD nSections = pNtHeader->FileHeader.NumberOfSections; // 不能以section内容为空来判断
     for (WORD i =  0; pish && (i < nSections); ++i, ++pish)
     {
-        if ((pish->Characteristics & (IMAGE_SCN_CNT_CODE|IMAGE_SCN_MEM_EXECUTE) ) ==
-            (IMAGE_SCN_CNT_CODE|IMAGE_SCN_MEM_EXECUTE))
+        if ((pish->Characteristics & IMAGE_SCN_MEM_EXECUTE ) ==
+            IMAGE_SCN_MEM_EXECUTE)
         {
             SECTION_T c;
             c.VirtualAddr = (char*)hMod + pish->VirtualAddress;
@@ -216,14 +216,10 @@ static std::vector<SECTION_T> GetDataSection(HMODULE hMod)
             continue;
         }
         // 一般是.rdata段
-        if ((pish->Characteristics & (IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ) ) ==
-            (IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ))
-        {
-            SECTION_T c;
-            c.VirtualAddr = (char*)hMod + pish->VirtualAddress;
-            c.VirtualSize = pish->Misc.VirtualSize;
-            ret.push_back(c);
-        }
+        SECTION_T c;
+        c.VirtualAddr = (char*)hMod + pish->VirtualAddress;
+        c.VirtualSize = pish->Misc.VirtualSize;
+        ret.push_back(c);
     }
     return ret;
 }
