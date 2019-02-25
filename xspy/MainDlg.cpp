@@ -226,7 +226,11 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
             if (Process != NULL)
             {
                 BOOL bIsWow64;
-
+                TCHAR szExePath[MAX_PATH];
+                GetModuleFileName(NULL, szExePath, MAX_PATH);
+                TCHAR* p = StrRChr(szExePath, 0, TEXT('\\'));
+                *p = 0;
+                
 #ifdef _M_IX86
                 // 检查32版本是否运行在64位系统上
                 if (fnIsWow64Process(GetCurrentProcess(), &bIsWow64))
@@ -245,7 +249,8 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
                                     ShowWindow(SW_HIDE);
                                     TCHAR StrhWnd[64];
                                     _itot_s((int)hWnd, StrhWnd, 10);
-                                    ShellExecute(NULL, _T("open"), _T("xspy-x64.exe"), StrhWnd, NULL, SW_SHOW);
+                                    lstrcat(szExePath, _T("\\xspy-x64.exe"));
+                                    ShellExecute(NULL, _T("open"), szExePath, StrhWnd, NULL, SW_SHOW);
 
                                     PostQuitMessage(0);
                                 }
@@ -268,7 +273,8 @@ LRESULT CMainDlg::OnSpy( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& 
                             ShowWindow(SW_HIDE);
                             TCHAR StrhWnd[64];
                             _i64tot((__int64)hWnd, StrhWnd, 10);
-                            ShellExecute(NULL, _T("open"), _T("xspy.exe"), StrhWnd, NULL, SW_SHOW);
+                            lstrcat(szExePath, _T("\\xspy.exe"));
+                            ShellExecute(NULL, _T("open"), szExePath, StrhWnd, NULL, SW_SHOW);
                             PostQuitMessage(0);
                         }
                         return 0;
